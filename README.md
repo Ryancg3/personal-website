@@ -25,10 +25,9 @@ public/                  # static files copied as-is (favicon, images, CV)
 
 ## Deployment
 
-Hosted on Cloudflare Pages, which rebuilds the site on every push to `main`.
+Hosted on Cloudflare Workers (static assets), which rebuilds and deploys on every push to `main`. Config lives in `wrangler.jsonc`.
 
-| Setting          | Value           |
-| ---------------- | --------------- |
-| Framework preset | Astro           |
-| Build command    | `npm run build` |
-| Output directory | `dist`          |
+| Setting        | Value                |
+| -------------- | -------------------- |
+| Build command  | `npm run build`      |
+| Deploy command | `npx wrangler deploy` |

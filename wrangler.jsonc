@@ -1,0 +1,9 @@
+// Cloudflare Workers config: serves the static Astro build from dist/.
+// "name" must match the Worker name in the Cloudflare dashboard.
+{
+  "name": "personal-website",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./dist"
+  }
+}
