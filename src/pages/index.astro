@@ -1,0 +1,115 @@
+---
+import Base from '../layouts/Base.astro';
+
+const linkedin = 'https://www.linkedin.com/in/ryan-gumsheimer/';
+---
+
+<Base description="Personal website of Ryan Gumsheimer. Under construction.">
+  <div class="spot" aria-hidden="true"></div>
+  <main>
+    <span class="status">Under construction</span>
+    <h1>Ryan Gumsheimer</h1>
+    <p>The full site is on its way.</p>
+    <a class="button" href={linkedin} target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+      Find me on LinkedIn
+    </a>
+  </main>
+</Base>
+
+<style>
+  :global(body) {
+    display: grid;
+    place-items: center;
+    padding: 24px 16px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  /* A warm spotlight from above that sways very slowly */
+  .spot {
+    position: fixed;
+    top: -20vh;
+    left: 50%;
+    width: 80vmin;
+    height: 130vh;
+    margin-left: -40vmin;
+    background: radial-gradient(ellipse at 50% 0%, var(--spot), transparent 65%);
+    filter: blur(30px);
+    transform-origin: 50% 0;
+    animation: sway 14s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+  @keyframes sway {
+    from { transform: rotate(-6deg); }
+    to { transform: rotate(6deg); }
+  }
+
+  main { position: relative; }
+  main > * { opacity: 0; animation: fade 1.4s ease forwards; }
+  main > :nth-child(2) { animation-delay: .2s; }
+  main > :nth-child(3) { animation-delay: .4s; }
+  main > :nth-child(4) { animation-delay: .6s; }
+  @keyframes fade {
+    from { opacity: 0; transform: translateY(10px); filter: blur(4px); }
+    to { opacity: 1; transform: none; filter: none; }
+  }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .status::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+    50% { box-shadow: 0 0 0 7px transparent; }
+  }
+
+  h1 {
+    margin-top: 1.5rem;
+    font-family: Fraunces, serif;
+    font-weight: 300;
+    font-size: clamp(2.6rem, 8vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    margin-top: 1rem;
+    color: var(--muted);
+    font-size: 1.05rem;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 2.5rem;
+    padding: 0.85rem 1.7rem;
+    border-radius: 10px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform .35s ease, box-shadow .35s ease, background .35s ease;
+  }
+  .button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -10px var(--accent-glow);
+  }
+  .button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  .button svg { width: 1em; height: 1em; fill: currentColor; }
+</style>
